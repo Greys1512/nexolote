@@ -29,7 +29,11 @@ export default function Sidebar({ activePage, onNavigate, rol, collapsed = false
   );
 
   return (
-    <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
+    <aside
+      className={`sidebar ${collapsed ? 'collapsed' : ''}`}
+      id="main-sidebar"
+      aria-label="Menú lateral"
+    >
       <div className="brand">
         <div className="brand-icon">
           <Factory size={collapsed ? 20 : 25} />
@@ -50,7 +54,9 @@ export default function Sidebar({ activePage, onNavigate, rol, collapsed = false
             type="button"
             key={name}
             className={`nav-item ${activePage === name ? 'active' : ''}`}
+            aria-label={name}
             aria-current={activePage === name ? 'page' : undefined}
+            title={collapsed ? name : undefined}
             onClick={() => onNavigate(name)}
           >
             <Icon size={collapsed ? 18 : 20} />

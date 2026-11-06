@@ -36,15 +36,19 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
   };
 
   return (
-    <form className="product-form" onSubmit={enviar}>
+    <form className="product-form login-form" onSubmit={enviar}>
       <Input
         id="correo"
-        label="Correo"
+        label="Correo electrónico"
         type="email"
         autoComplete="username"
         value={correo}
-        onChange={(event) => setCorreo(event.target.value)}
-        placeholder="admin@nexolote.com"
+        onChange={(event) => {
+          setCorreo(event.target.value);
+          if (error) setError('');
+        }}
+        placeholder="nombre@empresa.com"
+        disabled={enviando}
         required
       />
 
@@ -56,8 +60,12 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
             type={mostrarPassword ? 'text' : 'password'}
             autoComplete="current-password"
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            placeholder="••••••••"
+            onChange={(event) => {
+              setPassword(event.target.value);
+              if (error) setError('');
+            }}
+            placeholder="Ingresa tu contraseña"
+            disabled={enviando}
             required
           />
           <button
@@ -72,14 +80,19 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
         </div>
       </div>
 
-      {error && <p className="catalog-error" role="alert">{error}</p>}
+      {error && (
+        <p className="catalog-error login-error" role="alert" aria-live="polite">
+          {error}
+        </p>
+      )}
 
       <Button
         type="submit"
         className="submit-product-button"
         disabled={enviando}
+        aria-busy={enviando}
       >
-        {enviando ? 'Ingresando...' : 'Iniciar sesión'}
+        {enviando ? 'Verificando acceso...' : 'Iniciar sesión'}
       </Button>
     </form>
   );

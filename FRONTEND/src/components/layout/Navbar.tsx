@@ -3,8 +3,9 @@ import {
   Bell,
   Check,
   ChevronRight,
-  Menu,
   Moon,
+  PanelLeftClose,
+  PanelLeftOpen,
   Search,
   Sun,
 } from 'lucide-react';
@@ -267,18 +268,23 @@ export default function Navbar({
         <button
           type="button"
           className="sidebar-toggle"
-          title={sidebarCollapsed ? 'Expandir menú' : 'Minimizar menú'}
-          aria-label={sidebarCollapsed ? 'Expandir menú' : 'Minimizar menú'}
-          aria-pressed={sidebarCollapsed}
+          title={sidebarCollapsed ? 'Expandir menú' : 'Contraer menú'}
+          aria-label={sidebarCollapsed ? 'Expandir menú' : 'Contraer menú'}
+          aria-expanded={!sidebarCollapsed}
+          aria-controls="main-sidebar"
           onClick={toggleSidebar}
         >
-          {sidebarCollapsed ? <ChevronRight size={19} /> : <Menu size={19} />}
+          {sidebarCollapsed ? <PanelLeftOpen size={19} /> : <PanelLeftClose size={19} />}
         </button>
-        <h1 className="topbar-title">{activePage}</h1>
-        <div className="breadcrumb">
-          <span>Inicio</span>
-          <span className="breadcrumb-separator">/</span>
-          <strong>{activePage}</strong>
+        <div className="topbar-heading">
+          <div className="topbar-heading-text">
+            <h1 className="topbar-title">{activePage}</h1>
+            <div className="breadcrumb">
+              <span>Inicio</span>
+              <span className="breadcrumb-separator">/</span>
+              <strong>{activePage}</strong>
+            </div>
+          </div>
         </div>
       </div>
 

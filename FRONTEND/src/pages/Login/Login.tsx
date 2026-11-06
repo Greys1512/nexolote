@@ -1,4 +1,4 @@
-import { Factory, Moon, Sun } from 'lucide-react';
+import { Factory, LockKeyhole, Moon, Sun } from 'lucide-react';
 import type { Usuario } from '../../services/api';
 import { useTheme } from '../../hooks/useTheme';
 import LoginForm from './LoginForm';
@@ -32,7 +32,16 @@ export default function Login({ onLogin }: LoginProps) {
             <span>GESTIÓN INDUSTRIAL</span>
           </div>
         </div>
+        <div className="login-intro">
+          <span className="login-eyebrow">Acceso a tu espacio de trabajo</span>
+          <h1>Bienvenido de nuevo</h1>
+          <p>Ingresa tus datos para continuar con la gestión de tus operaciones.</p>
+        </div>
         <LoginForm onLogin={onLogin} />
+        <div className="login-security-note">
+          <LockKeyhole size={15} aria-hidden="true" />
+          <span>Acceso protegido a tu panel de operaciones</span>
+        </div>
       </section>
     </div>
   );

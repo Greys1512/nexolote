@@ -264,15 +264,6 @@ export default function Navbar({
   return (
     <header className="topbar">
       <div className="topbar-left">
-        <h1 className="topbar-title">{activePage}</h1>
-        <div className="breadcrumb">
-          <span>Inicio</span>
-          <span className="breadcrumb-separator">/</span>
-          <strong>{activePage}</strong>
-        </div>
-      </div>
-
-      <div className="topbar-right">
         <button
           type="button"
           className="sidebar-toggle"
@@ -283,6 +274,15 @@ export default function Navbar({
         >
           {sidebarCollapsed ? <ChevronRight size={19} /> : <Menu size={19} />}
         </button>
+        <h1 className="topbar-title">{activePage}</h1>
+        <div className="breadcrumb">
+          <span>Inicio</span>
+          <span className="breadcrumb-separator">/</span>
+          <strong>{activePage}</strong>
+        </div>
+      </div>
+
+      <div className="topbar-right">
         <div className="buscador-contenedor" ref={busquedaRef}>
           <label className="buscador">
             <Search size={18} aria-hidden="true" />

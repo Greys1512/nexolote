@@ -195,6 +195,20 @@ cd BACKEND ; npm run start:render
 cd FRONTEND ; npm run dev -- --host   # http://localhost:5173
 ```
 
+## 📄 Paginación en los módulos del frontend
+
+Todos los módulos con listado paginan sus tablas de a 10 registros:
+
+| Módulo | Tabla(s) paginadas |
+|--------|-------------------|
+| Catálogo | Productos |
+| Producción | Lotes de producción |
+| Inventario | Materias primas, Lotes recibidos |
+| Mantenimiento | Mantenimientos, Responsables, Incidencias |
+| Usuarios | Usuarios registrados |
+
+El componente `Pagination` (`FRONTEND/src/components/common/Pagination.tsx`) se renderiza solo cuando hay más de una página (más de 10 registros). Cada tabla mantiene su propio estado de página.
+
 ---
 
 ## ⚠️ Notas y mantenimiento

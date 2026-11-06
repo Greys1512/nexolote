@@ -285,6 +285,9 @@ Acceder en: `http://localhost:5173`
 
 Guía completa paso a paso: ver **`DESPLIEGUE.md`**.
 
+### Paginación del frontend
+Todos los módulos con listado (Catálogo, Producción, Inventario, Mantenimiento, Usuarios) paginan sus tablas de a 10 registros usando el componente `Pagination`. El paginador solo se muestra cuando hay más de una página de resultados.
+
 ---
 
 ## ⚠️ Notas

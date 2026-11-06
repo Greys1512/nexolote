@@ -1367,6 +1367,196 @@ html, body, #root {
   }
 }
 
+/* =========================
+   MEJORAS PARA MÓVIL
+========================= */
+
+@media (max-width: 640px) {
+  .app-container {
+    overflow: hidden;
+  }
+
+  .page-content {
+    padding: 20px 16px 32px;
+  }
+
+  .topbar {
+    height: auto;
+    padding: 10px 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .topbar-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    min-width: 100%;
+  }
+
+  .topbar-title {
+    font-size: 17px;
+  }
+
+  .breadcrumb {
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .topbar-right {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .buscador {
+    min-width: 140px;
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .buscador-input {
+    font-size: 12px;
+  }
+
+  .page-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .page-actions .btn-primario {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .table-wrapper {
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+
+  .table-wrapper th,
+  .table-wrapper td {
+    font-size: 12px;
+    padding: 10px 8px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-value {
+    font-size: 22px;
+  }
+
+  .modal-container {
+    width: 92%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .login-page {
+    padding: 16px;
+  }
+
+  .login-card {
+    padding: 28px 20px;
+    border-radius: 16px;
+  }
+
+  .login-card h2 {
+    font-size: 24px;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .submit-product-button {
+    padding: 14px 20px;
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .tema-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .notificaciones {
+    width: 36px;
+    height: 36px;
+  }
+
+  .perfil-btn .avatar {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+
+  .perfil-menu {
+    width: 200px;
+  }
+
+  .pagination {
+    margin-top: 12px;
+    gap: 0.4rem;
+  }
+
+  .pagination .btn-secundario {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+
+  .pagination-info {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-content {
+    padding: 16px 14px 28px;
+  }
+
+  .topbar {
+    padding: 8px 14px;
+  }
+
+  .buscador {
+    min-width: 120px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .table-wrapper th,
+  .table-wrapper td {
+    font-size: 11px;
+    padding: 8px 6px;
+  }
+
+  .modal-container {
+    width: 94%;
+    margin: 10px;
+  }
+
+  .login-card {
+    padding: 24px 18px;
+  }
+
+  .submit-product-button {
+    width: 100%;
+  }
+}
+
+/* =========================
+   FIN MEJORAS MÓVIL
+========================= */
+
 /* Paginación */
 .pagination {
   display: flex;

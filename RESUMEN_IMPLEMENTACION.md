@@ -252,6 +252,41 @@ Acceder en: `http://localhost:5173`
 
 ---
 
+## ☁️ DESPLIEGUE EN LA NUBE — COMPLETADO (6 nov 2026)
+
+### URLs finales
+| Componente | URL | Plataforma |
+|------------|-----|------------|
+| Frontend | https://nexolote.vercel.app | Vercel (proyecto `nexolote`) |
+| Backend (API) | https://nexolote.onrender.com | Render (servicio `nexolote`, plan Free) |
+| Base de datos | `gateway01.ap-northeast-1.prod.aws.tidbcloud.com:4000` | TiDB Cloud (Tokyo) |
+
+**Acceso en producción:** `admin@nexolote.com` / `Nexolote2026!`
+
+### Configuración del despliegue
+- **Render:** Root Directory `BACKEND`, build `npm install && npm run build`, start `npm run start:render`, plan Free (512 MB, se duerme con inactividad ~50 s).
+- **Vercel:** Root Directory `FRONTEND`, build Vite automático, integración GitHub (deploy en cada push a `main`).
+- **Variables en Render (10):** `GATEWAY_HOST=0.0.0.0`, `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_DATABASE`, `DB_CA_CERT` (PEM embebido, sin disco), `JWT_SECRET`, `JWT_EXPIRA`, `FRONTEND_ORIGIN=https://nexolote.vercel.app`.
+- **Variable en Vercel:** `VITE_API_URL=https://nexolote.onrender.com` (Production) — hace que `src/services/api.ts` apunte a Render en vez de `127.0.0.1:3000`.
+
+### Problemas resueltos durante el despliegue
+1. **`MODULE_NOT_FOUND` en Render** → `nest build` sin argumentos solo compila `api-gateway` en un monorepo. Fix: script `"build": "nest build --all"` (commit `76fe96a`), verificado con build limpio de los 6 apps.
+2. **Gateway no expuesto** → añadido `GATEWAY_HOST=0.0.0.0` (por defecto escucha `127.0.0.1`, invisible para Render).
+3. **Certificado TLS sin disco persistente** → se usa `DB_CA_CERT` (PEM como variable de entorno) en lugar de `DB_CA` (ruta de archivo), por lo que el plan Free sin discos funciona.
+4. **`VITE_API_URL` no se guardaba en Vercel** → en el diálogo, **"Add new variable" solo agrega una fila**; lo que persiste es **"Save"**. Además, guardar la variable **no redespliega** → hizo falta **Redeploy** manual para que Vite la incruste en el bundle.
+5. **CORS en producción** → `FRONTEND_ORIGIN=https://nexolote.vercel.app` en Render.
+
+### Verificación final (6 nov 2026)
+- `GET /` → 200 `"API Gateway funcionando correctamente"`
+- `POST /auth/login` → 201 con `token` + `usuario` (bcrypt contra TiDB)
+- `GET /catalogo/productos` con Bearer → 200 con productos reales
+- Login en https://nexolote.vercel.app → dashboard con estadísticas reales, **0 errores en consola**
+- Bundle en producción contiene `https://nexolote.onrender.com` (sin rastro de `127.0.0.1:3000`)
+
+Guía completa paso a paso: ver **`DESPLIEGUE.md`**.
+
+---
+
 ## ⚠️ Notas
 - El archivo `.env` está en `.gitignore` y no se sube a git
 - El certificado CA debe mantenerse en `BACKEND/certs/tidb-ca.pem`

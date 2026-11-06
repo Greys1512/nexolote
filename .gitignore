@@ -17,7 +17,7 @@ build/
 .env.production.local
 
 # Certificados
-certs/*.pem
+*.pem
 
 # OS
 .DS_Store

@@ -1485,6 +1485,13 @@ html, body, #root {
   color: #2563eb;
 }
 
+.login-tema-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
 .notificaciones-panel {
   width: min(390px, calc(100vw - 32px));
 }

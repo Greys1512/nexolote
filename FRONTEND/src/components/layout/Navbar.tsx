@@ -10,6 +10,7 @@ import {
 import type { Usuario } from '../../services/api';
 import { apiFetch } from '../../services/api';
 import type { ActividadDashboard } from '../../types/domain';
+import { useTheme } from '../../hooks/useTheme';
 
 interface NavbarProps {
   activePage: string;
@@ -68,9 +69,7 @@ export default function Navbar({
   const [resultados, setResultados] = useState<SearchResult[]>([]);
   const [buscando, setBuscando] = useState(false);
   const [errorBusqueda, setErrorBusqueda] = useState('');
-  const [tema, setTema] = useState<'light' | 'dark'>(() =>
-    localStorage.getItem('nexolote:theme') === 'dark' ? 'dark' : 'light',
-  );
+  const { tema, alternarTema } = useTheme();
   const [notificacionesLeidas, setNotificacionesLeidas] = useState<string[]>(
     () => {
       const guardadas = localStorage.getItem('nexolote:readNotifications');
@@ -105,11 +104,6 @@ export default function Navbar({
   const sinLeer = notificaciones.filter(
     (item) => !notificacionesLeidas.includes(item.id),
   ).length;
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = tema;
-    localStorage.setItem('nexolote:theme', tema);
-  }, [tema]);
 
   useEffect(() => {
     const termino = busqueda.trim();
@@ -343,7 +337,7 @@ export default function Navbar({
             title={tema === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'}
             aria-label={tema === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'}
             aria-pressed={tema === 'dark'}
-            onClick={() => setTema((actual) => (actual === 'dark' ? 'light' : 'dark'))}
+            onClick={alternarTema}
           >
             {tema === 'dark' ? <Sun size={19} /> : <Moon size={19} />}
           </button>

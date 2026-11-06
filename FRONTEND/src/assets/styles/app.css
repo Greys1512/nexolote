@@ -1717,6 +1717,146 @@ html, body, #root {
    FIN MEJORAS MÓVIL
 ========================= */
 
+/* =========================
+   PANELES DE INVENTARIO (tarjetas separadas)
+========================= */
+
+.inventory-panel {
+  background: #ffffff;
+  border: 1px solid #eef0f4;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.inventory-panel.inventory-alert-panel {
+  border-left: 4px solid #ef4444;
+}
+
+.inventory-panel .inventory-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.inventory-panel .inventory-section-heading h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #111827;
+}
+
+.inventory-panel .inventory-section-heading p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.inventory-panel .inventory-heading-icon {
+  flex-shrink: 0;
+}
+
+.inventory-panel .inventory-heading-count {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+  background: #eff6ff;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.inventory-panel > div:not(.inventory-section-heading),
+.inventory-panel > .inventory-toolbar,
+.inventory-panel > .table-wrapper,
+.inventory-panel > .inventory-alert-list,
+.inventory-panel > .inventory-empty {
+  padding: 16px 20px;
+}
+
+/* Paginación dentro de paneles de inventario */
+.inventory-panel .pagination {
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+
+/* Mobile: los paneles se ven como tarjetas apiladas con buena separación */
+@media (max-width: 640px) {
+  .inventory-panel {
+    margin-bottom: 20px;
+    border-radius: 12px;
+  }
+
+  .inventory-panel .inventory-section-heading {
+    padding: 14px 16px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .inventory-panel .inventory-section-heading h2 {
+    font-size: 16px;
+  }
+
+  .inventory-panel .inventory-section-heading p {
+    font-size: 12px;
+  }
+
+  .inventory-panel .inventory-heading-count {
+    margin-left: 0;
+    align-self: flex-start;
+  }
+
+  .inventory-panel > div:not(.inventory-section-heading),
+  .inventory-panel > .inventory-toolbar,
+  .inventory-panel > .table-wrapper,
+  .inventory-panel > .inventory-alert-list,
+  .inventory-panel > .inventory-empty {
+    padding: 14px 16px;
+  }
+
+  .inventory-panel .pagination {
+    margin-top: 12px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 390px) {
+  .inventory-panel {
+    margin-bottom: 16px;
+    border-radius: 10px;
+  }
+
+  .inventory-panel .inventory-section-heading {
+    padding: 12px 14px 10px;
+  }
+
+  .inventory-panel .inventory-section-heading h2 {
+    font-size: 15px;
+  }
+
+  .inventory-panel > div:not(.inventory-section-heading),
+  .inventory-panel > .inventory-toolbar,
+  .inventory-panel > .table-wrapper,
+  .inventory-panel > .inventory-alert-list,
+  .inventory-panel > .inventory-empty {
+    padding: 12px 14px;
+  }
+
+  .inventory-table th,
+  .inventory-table td {
+    font-size: 10px;
+    padding: 8px 5px;
+  }
+}
+
+/* =========================
+   FIN PANELES DE INVENTARIO
+========================= */
+
 /* Paginación */
 .pagination {
   display: flex;

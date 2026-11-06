@@ -38,6 +38,65 @@ html, body, #root {
   z-index: 10;
   height: 100vh;
   padding: 28px 16px 32px;
+  transition: width 0.25s ease, padding 0.25s ease;
+}
+
+.sidebar.collapsed {
+  width: 70px;
+  padding: 20px 8px 24px;
+}
+
+.sidebar.collapsed .brand > div:last-child {
+  display: none;
+}
+
+.sidebar.collapsed .menu-label {
+  display: none;
+}
+
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding: 12px 8px;
+}
+
+.sidebar.collapsed .nav-item span {
+  display: none;
+}
+
+.sidebar.collapsed .active-indicator {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-bottom {
+  display: none;
+}
+
+/* Botón minimizar/restaurar sidebar */
+.sidebar-toggle {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 10px;
+  background: #f9fafb;
+  color: #6b7280;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: all 0.2s ease;
+}
+
+.sidebar-toggle:hover {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.sidebar-toggle:active {
+  background: #e0e7ff;
+}
+
+.sidebar-toggle svg {
+  pointer-events: none;
 }
 
 .brand {
@@ -1366,6 +1425,10 @@ html, body, #root {
 
   .middle-grid {
     grid-template-columns: 1fr;
+  }
+
+  .sidebar.collapsed {
+    width: 70px;
   }
 }
 

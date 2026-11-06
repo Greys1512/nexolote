@@ -12,6 +12,8 @@ interface HomeProps {
   onLogout: () => void;
   actividad: ActividadDashboard[];
   stockBajo: number;
+  sidebarCollapsed: boolean;
+  toggleSidebar: () => void;
   children: ReactNode;
 }
 
@@ -22,6 +24,8 @@ export default function Home({
   onLogout,
   actividad,
   stockBajo,
+  sidebarCollapsed,
+  toggleSidebar,
   children,
 }: HomeProps) {
   return (
@@ -30,6 +34,7 @@ export default function Home({
         activePage={activePage}
         onNavigate={onNavigate}
         rol={usuario?.rol}
+        collapsed={sidebarCollapsed}
       />
       <main className="main-content">
         <Navbar
@@ -39,6 +44,8 @@ export default function Home({
           onNavigate={onNavigate}
           actividad={actividad}
           stockBajo={stockBajo}
+          toggleSidebar={toggleSidebar}
+          sidebarCollapsed={sidebarCollapsed}
         />
         {children}
         <Footer />

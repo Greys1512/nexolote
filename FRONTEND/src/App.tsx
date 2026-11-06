@@ -15,6 +15,7 @@ import AppRoutes from './routes/AppRoutes';
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const { token, usuario, iniciarSesion, cerrarSesion } = useAuth();
   const dashboard = useDashboard(!!token && activePage === 'Dashboard');
 
@@ -33,6 +34,8 @@ function App() {
 
   const salir = () => { cerrarSesion(); setActivePage('Dashboard'); };
 
+  const toggleSidebar = () => setSidebarCollapsed((actual) => !actual);
+
   return (
     <Home
       activePage={activePage}
@@ -41,6 +44,8 @@ function App() {
       onLogout={salir}
       actividad={dashboard.actividad.registros}
       stockBajo={dashboard.inventario.bajoMinimo}
+      sidebarCollapsed={sidebarCollapsed}
+      toggleSidebar={toggleSidebar}
     >
       <div className="page-content">
         <AppRoutes activePage={activePage} pages={pages} fallback={<NotFound page={activePage} onHome={() => setActivePage('Dashboard')} />} />

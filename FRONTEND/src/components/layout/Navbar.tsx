@@ -3,6 +3,7 @@ import {
   Bell,
   Check,
   ChevronRight,
+  Menu,
   Moon,
   Search,
   Sun,
@@ -19,6 +20,8 @@ interface NavbarProps {
   onNavigate: (page: string) => void;
   actividad: ActividadDashboard[];
   stockBajo: number;
+  toggleSidebar: () => void;
+  sidebarCollapsed: boolean;
 }
 
 interface SearchSource {
@@ -62,6 +65,8 @@ export default function Navbar({
   onNavigate,
   actividad,
   stockBajo,
+  toggleSidebar,
+  sidebarCollapsed,
 }: NavbarProps) {
   const [perfilOpen, setPerfilOpen] = useState(false);
   const [notificacionesOpen, setNotificacionesOpen] = useState(false);
@@ -268,6 +273,16 @@ export default function Navbar({
       </div>
 
       <div className="topbar-right">
+        <button
+          type="button"
+          className="sidebar-toggle"
+          title={sidebarCollapsed ? 'Expandir menú' : 'Minimizar menú'}
+          aria-label={sidebarCollapsed ? 'Expandir menú' : 'Minimizar menú'}
+          aria-pressed={sidebarCollapsed}
+          onClick={toggleSidebar}
+        >
+          {sidebarCollapsed ? <ChevronRight size={19} /> : <Menu size={19} />}
+        </button>
         <div className="buscador-contenedor" ref={busquedaRef}>
           <label className="buscador">
             <Search size={18} aria-hidden="true" />

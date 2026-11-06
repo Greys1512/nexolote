@@ -1,0 +1,68 @@
+{
+    "$schema":  "https://json.schemastore.org/nest-cli",
+    "collection":  "@nestjs/schematics",
+    "sourceRoot":  "apps/api-gateway/src",
+    "compilerOptions":  {
+                            "deleteOutDir":  true,
+                            "builder":  "rspack",
+                            "tsConfigPath":  "apps/api-gateway/tsconfig.app.json"
+                        },
+    "monorepo":  true,
+    "root":  "apps/api-gateway",
+    "projects":  {
+                     "api-gateway":  {
+                                         "type":  "application",
+                                         "root":  "apps/api-gateway",
+                                         "entryFile":  "main",
+                                         "sourceRoot":  "apps/api-gateway/src",
+                                         "compilerOptions":  {
+                                                                 "tsConfigPath":  "apps/api-gateway/tsconfig.app.json"
+                                                             }
+                                     },
+                     "catalogo-service":  {
+                                              "type":  "application",
+                                              "root":  "apps/catalogo-service",
+                                              "entryFile":  "main",
+                                              "sourceRoot":  "apps/catalogo-service/src",
+                                              "compilerOptions":  {
+                                                                      "tsConfigPath":  "apps/catalogo-service/tsconfig.app.json"
+                                                                  }
+                                          },
+                     "inventario-service":  {
+                                                "type":  "application",
+                                                "root":  "apps/inventario-service",
+                                                "entryFile":  "main",
+                                                "sourceRoot":  "apps/inventario-service/src",
+                                                "compilerOptions":  {
+                                                                        "tsConfigPath":  "apps/inventario-service/tsconfig.app.json"
+                                                                    }
+                                            },
+                     "mantenimiento-service":  {
+                                                   "type":  "application",
+                                                   "root":  "apps/mantenimiento-service",
+                                                   "entryFile":  "main",
+                                                   "sourceRoot":  "apps/mantenimiento-service/src",
+                                                   "compilerOptions":  {
+                                                                           "tsConfigPath":  "apps/mantenimiento-service/tsconfig.app.json"
+                                                                       }
+                                               },
+                     "produccion-service":  {
+                                                "type":  "application",
+                                                "root":  "apps/produccion-service",
+                                                "entryFile":  "main",
+                                                "sourceRoot":  "apps/produccion-service/src",
+                                                "compilerOptions":  {
+                                                                        "tsConfigPath":  "apps/produccion-service/tsconfig.app.json"
+                                                                    }
+                                            },
+                     "auth-service":  {
+                                          "type":  "application",
+                                          "root":  "apps/auth-service",
+                                          "entryFile":  "main",
+                                          "sourceRoot":  "apps/auth-service/src",
+                                          "compilerOptions":  {
+                                                                  "tsConfigPath":  "apps/auth-service/tsconfig.app.json"
+                                                              }
+                                      }
+                 }
+}

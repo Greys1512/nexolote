@@ -1368,9 +1368,36 @@ html, body, #root {
 }
 
 /* Paginación */
-.pagination { display: flex; align-items: center; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
-.pagination-info { font-size: 0.875rem; opacity: 0.85; }
-.pagination .btn-secundario { padding: 0.35rem 0.75rem; font-size: 0.875rem; }
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pagination-info {
+  font-size: 0.875rem;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.pagination .btn-secundario {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.875rem;
+  min-width: 80px;
+}
+
+.pagination .btn-secundario:not(:disabled):hover {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.pagination .btn-secundario:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 /* Search, notifications, and theme controls */
 .buscador-contenedor,

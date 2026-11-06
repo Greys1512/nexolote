@@ -340,6 +340,7 @@ const desactivarProducto = async (id_producto: number) => {
                       <tbody>
                         {productos
                           .filter((producto) => producto.estado === 'Activo')
+                          .slice((pagina - 1) * paginaSize, pagina * paginaSize)
                           .map((producto) => (
                             <tr key={producto.id_producto}>
                               <td className="reference">

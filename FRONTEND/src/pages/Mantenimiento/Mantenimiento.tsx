@@ -12,6 +12,10 @@ export default function Mantenimiento() {
   const [errorMantenimientos, setErrorMantenimientos] = useState('');
   const [paginaMant, setPaginaMant] = useState(1);
   const paginaMantSize = 10;
+  const [paginaResponsables, setPaginaResponsables] = useState(1);
+  const paginaResponsablesSize = 10;
+  const [paginaIncidencias, setPaginaIncidencias] = useState(1);
+  const paginaIncidenciasSize = 10;
   const [equiposMantenimiento, setEquiposMantenimiento] = useState<EquipoMantenimiento[]>([]);
   const [responsablesMantenimiento, setResponsablesMantenimiento] = useState<ResponsableMantenimiento[]>([]);
   const [cargandoResponsables, setCargandoResponsables] = useState(true);
@@ -474,7 +478,9 @@ const limpiarFormularioMantenimiento = () => {
                       </thead>
 
                       <tbody>
-                        {responsablesMantenimiento.map((responsable) => (
+                        {responsablesMantenimiento
+                          .slice((paginaResponsables - 1) * paginaResponsablesSize, paginaResponsables * paginaResponsablesSize)
+                          .map((responsable) => (
                           <tr key={responsable.id_responsable}>
                             <td>
                               <strong>
@@ -495,11 +501,12 @@ const limpiarFormularioMantenimiento = () => {
                         ))}
                       </tbody>
                     </table>
+                  <Pagination page={paginaResponsables} total={responsablesMantenimiento.length} pageSize={paginaResponsablesSize} onPageChange={setPaginaResponsables} />
                   </div>
                 )}
               </section>
 
-              {/* INCIDENCIAS */}
+              {/* INCIDENCIES */}
               <section className="panel activity-panel">
                 <div className="panel-header">
                   <div>
@@ -580,6 +587,7 @@ const limpiarFormularioMantenimiento = () => {
                         ))}
                       </tbody>
                     </table>
+                  <Pagination page={paginaIncidencias} total={incidencias.length} pageSize={paginaIncidenciasSize} onPageChange={setPaginaIncidencias} />
                   </div>
                 )}
               </section>

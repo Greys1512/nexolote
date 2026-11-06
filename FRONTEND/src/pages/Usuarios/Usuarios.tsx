@@ -1,6 +1,7 @@
 ﻿import { useEffect, useState, type FormEvent } from 'react';
 import { Plus, Users } from 'lucide-react';
 import { apiFetch } from '../../services/api';
+import Pagination from '../../components/common/Pagination';
 import Modal from '../../components/common/Modal';
 import type { Usuario } from '../../types/domain';
 
@@ -8,6 +9,8 @@ export default function Usuarios() {
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState('');
+  const [paginaUsuarios, setPaginaUsuarios] = useState(1);
+  const paginaUsuariosSize = 10;
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editando, setEditando] = useState<number | null>(null);
@@ -115,7 +118,9 @@ export default function Usuarios() {
             <table>
               <thead><tr><th>USUARIO</th><th>CORREO</th><th>ROL</th><th>ESTADO</th><th>ACCIONES</th></tr></thead>
               <tbody>
-                {usuarios.map((u) => (
+                {usuarios
+                  .slice((paginaUsuarios - 1) * paginaUsuariosSize, paginaUsuarios * paginaUsuariosSize)
+                  .map((u) => (
                   <tr key={u.id_usuario}>
                     <td><strong>{u.nombre}</strong></td><td>{u.correo}</td><td>{u.rol}</td>
                     <td><span className={`status-badge ${u.estado === 'Activo' ? 'completed' : 'pending'}`}>{u.estado}</span></td>
@@ -124,6 +129,7 @@ export default function Usuarios() {
                 ))}
               </tbody>
             </table>
+            <Pagination page={paginaUsuarios} total={usuarios.length} pageSize={paginaUsuariosSize} onPageChange={setPaginaUsuarios} />
           </div>
         )}
       </section>

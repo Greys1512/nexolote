@@ -18,6 +18,7 @@ import {
 import { apiFetch } from '../../services/api';
 
 import Modal from '../../components/common/Modal';
+import Pagination from '../../components/common/Pagination';
 import './Inventario.css';
 
 interface DashboardInventario {
@@ -146,6 +147,10 @@ export default function Inventario() {
   const [busquedaMaterias, setBusquedaMaterias] = useState('');
   const [busquedaLotes, setBusquedaLotes] = useState('');
   const [filtroLotes, setFiltroLotes] = useState<FiltroLotes>('Todos');
+  const [paginaMaterias, setPaginaMaterias] = useState(1);
+  const paginaMateriasSize = 10;
+  const [paginaLotes, setPaginaLotes] = useState(1);
+  const paginaLotesSize = 10;
 
   // <Plus size={17} /> Registrar entrada
   const [modalInventarioOpen, setModalInventarioOpen] = useState(false);
@@ -577,7 +582,9 @@ export default function Inventario() {
               </thead>
 
               <tbody>
-                {materiasFiltradas.map((materia) => {
+                {materiasFiltradas
+                  .slice((paginaMaterias - 1) * paginaMateriasSize, paginaMaterias * paginaMateriasSize)
+                  .map((materia) => {
                   const disponible = numero(materia.cantidad_disponible);
                   const minimo = numero(materia.stock_minimo);
                   const porcentaje =
@@ -640,6 +647,7 @@ export default function Inventario() {
                 })}
               </tbody>
             </table>
+          <Pagination page={paginaMaterias} total={materiasFiltradas.length} pageSize={paginaMateriasSize} onPageChange={setPaginaMaterias} />
           </div>
         )}
       </section>
@@ -705,7 +713,9 @@ export default function Inventario() {
               </thead>
 
               <tbody>
-                {lotesFiltrados.map((lote) => {
+                {lotesFiltrados
+                  .slice((paginaLotes - 1) * paginaLotesSize, paginaLotes * paginaLotesSize)
+                  .map((lote) => {
                   const condicion = clasificarLote(lote.fecha_vencimiento);
 
                   return (
@@ -744,6 +754,7 @@ export default function Inventario() {
                 })}
               </tbody>
             </table>
+          <Pagination page={paginaLotes} total={lotesFiltrados.length} pageSize={paginaLotesSize} onPageChange={setPaginaLotes} />
           </div>
         )}
       </section>
